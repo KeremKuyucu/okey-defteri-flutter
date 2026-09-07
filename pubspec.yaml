@@ -2,7 +2,7 @@ name: okey_defteri
 description: "A new Flutter project."
 publish_to: 'none'
 
-version: 1.0.7+8
+version: 1.0.7+9
 
 environment:
   sdk: ^3.12.0-154.0.dev
