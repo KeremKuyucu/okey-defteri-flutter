@@ -751,14 +751,18 @@ class _AmericanoGameScreenState extends State<AmericanoGameScreen>
   Widget _buildGameTable() {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final tableSize = constraints.maxWidth * 0.42;
+        // Geniş ekranlarda aşırı büyümeyi önlemek için maksimum genişlik sınırı uygulanır.
+        final effectiveWidth = constraints.maxWidth.clamp(0.0, 520.0);
+        final tableSize = effectiveWidth * 0.42;
         const double gap = 12.0;
 
         return Center(
-          child: FittedBox(
-            fit: BoxFit.contain,
-            child: Padding(
-              padding: const EdgeInsets.all(12.0),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: FittedBox(
+              fit: BoxFit.contain,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -880,6 +884,7 @@ class _AmericanoGameScreenState extends State<AmericanoGameScreen>
               ),
             ),
           ),
+        ),
         );
       },
     );
